@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Patient
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body class="bg1">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <form class="navbar-form navbar-right" method="post" action="/logout">
+              <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
+      </div>
+  </div>
+  </nav>
+  <br><br>
+  <br>
+  <br>
+  <br>
+<div class="details" id="ddetails">
+<div class="titlebar1">
+  <h4><b>Patient Details:</b></h4>
+</div>
+<br>
+  <div class="form-group" id="pid">
+<label for="pid">Patient ID</label>
+<input class="form-control" type="text" placeholder="31217" readonly="">
+</div>
+  <div class="form-group" id="name">
+<label for="name">Name</label>
+<input class="form-control" type="text" placeholder="Savita" readonly="">
+</div>
+  <div class="form-group" id="address">
+<label for="address">Address</label>
+<input class="form-control" type="text" placeholder="Nashik" readonly="">
+</div>
+  <div class="form-group" id="sex">
+<label for="sex">Sex</label>
+<input class="form-control" type="text" placeholder="F" readonly="">
+</div>
+  <div class="form-group" id="contact">
+<label for="contact">Contact</label>
+<input class="form-control" type="text" placeholder="9850972" readonly="">
+</div>
+</div>
+<br>
+<br>
+<div class="details">
+<div class="titlebar2">
+  <h4><b>Appointment/Treatment Details:</b></h4>
+</div>
+<br>
+<div class="form-group" id="did">
+<label for="did">Doctor ID</label>
+<input class="form-control" type="text" placeholder="1417" readonly="">
+</div>
+<div class="form-group" id="dname">
+<label for="dname">Doctor name</label>
+<input class="form-control" type="text" placeholder="Priya" readonly="">
+</div>
+<div class="form-group" id="status">
+<label for="status">Appointment status</label>
+<input class="form-control" type="text" placeholder="Pending" readonly="">
+</div>
+<div class="form-group" id="date">
+<label for="date">Appointment date</label>
+<input class="form-control" type="text" placeholder="2021-05-06" readonly="">
+</div>
+<div class="form-group" id="ddate"></div>
+<br>
+<div class="form-group">
+<form method="POST" action="/room">
+<button type="submit" class="btn btn-primary" id="appt_submit">Show Room details</button>
+</form>
+<br>
+<div id="room"></div>
+</div>
+</div>
+<br>
+<br>
+<div class="details">
+<div class="titlebar3">
+  <h4><b>Billing Details:</b></h4>
+</div>
+<br>
+<div class="form-group" id="rid"></div>
+<div class="form-group" id="tid"></div>
+<div class="form-group" id="mode"></div>
+<div class="form-group" id="tdate"></div>
+<div class="form-group" id="amt"></div>
+</div>
+<br>
+<br>
+<div class="details">
+  <div class="titlebar4">
+    <h4><b>Facility/Medication Details:</b></h4>
+  </div>
+  <br>
+  <div class="form-group">
+  <form method="POST" action="/facility">
+    <button type="submit" class="btn btn-primary" id="appt_submit">Show Facility details</button>
+  </form>
+  <br>
+  <div id="facility"></div>
+  <form method="POST" action="/medicine">
+    <button type="submit" class="btn btn-primary" id="appt_submit">Show Medication details</button>
+  </form>
+  <div id="medication"><table class="table table-striped table-dark">
+<thead><tr><th scope="col">#</th><th scope="col">Code</th><th scope="col">Price</th>
+<th scope="col">Exp. Date</th></tr></thead><tbody>
+</tbody></table></div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+</body></html>

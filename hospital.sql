@@ -1,0 +1,164 @@
+CREATE DATABASE hospital_management;
+USE hospital_management;
+CREATE TABLE Insurance (
+    InsuranceNo INT(10) PRIMARY KEY NOT NULL,
+    CompanyName VARCHAR(20) NOT NULL,
+    InsuranceType VARCHAR(20),
+    ClaimCoverage INT NOT NULL
+);
+CREATE TABLE Bill (
+    Reciept_ID INT(10) PRIMARY KEY NOT NULL,
+    Transaction_ID INT(10) NOT NULL,
+    Mode_of_Payment VARCHAR(20) CHECK (Mode_of_Payment IN ('Cash','Debit Card','Credit Card','Online','Insurance')),
+    Amount INT(10) NOT NULL,
+    Transaction_Date DATE NOT NULL
+);
+CREATE TABLE Medicine (
+    Code INT(10) PRIMARY KEY NOT NULL,
+    Price INT(10) NOT NULL,
+    Quantity INT(10) NOT NULL,
+    Expr_Date DATE NOT NULL
+);
+CREATE TABLE Facilities (
+    Facility_ID INT(10) PRIMARY KEY NOT NULL,
+    Facility_name VARCHAR(20) NOT NULL,
+    Cost INT(5) NOT NULL,
+    RoomNo INT(3) NOT NULL
+);
+CREATE TABLE Department (
+    Department_ID INT(10) PRIMARY KEY NOT NULL,
+    Department_name VARCHAR(20) NOT NULL,
+    Department_head VARCHAR(20) NOT NULL
+);
+CREATE TABLE Employees (
+    Employee_ID INT(10) PRIMARY KEY NOT NULL,
+    Department_ID INT(10) NOT NULL,
+    Name VARCHAR(20) NOT NULL,
+    Salary INT(7) NOT NULL,
+    E_mail VARCHAR(30),
+    Sex VARCHAR(4) CHECK (Sex IN ('M','F','O')),
+    Contact INT(10) NOT NULL,
+    Address VARCHAR(30) NOT NULL,
+    CONSTRAINT Employee_Dept FOREIGN KEY (Department_ID) REFERENCES Department (Department_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Doctor (
+    Doctor_ID INT(10) PRIMARY KEY NOT NULL,
+    Employee_ID INT(10) NOT NULL,
+    Qualification VARCHAR(20) NOT NULL,
+    Specialization VARCHAR(20) NOT NULL,
+    Charges INT(5),
+    CONSTRAINT Doctor_Employee FOREIGN KEY (Employee_ID) REFERENCES Employees (Employee_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Nurse (
+    Nurse_ID INT(10) PRIMARY KEY NOT NULL,
+    Employee_ID INT(10) NOT NULL,
+    Experience INT(5) NOT NULL,
+    CONSTRAINT Nurse_Employee FOREIGN KEY (Employee_ID) REFERENCES Employees (Employee_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Receptionist (
+    Receptionist_ID INT(10) PRIMARY KEY NOT NULL,
+    Employee_ID INT(10) NOT NULL,
+    CONSTRAINT Recept_Employee FOREIGN KEY (Employee_ID) REFERENCES Employees (Employee_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Rooms (
+    Room_ID INT(10) PRIMARY KEY NOT NULL,
+    Room_Type VARCHAR(20) NOT NULL,
+    Floor INT(2) CHECK (Floor BETWEEN 0 AND 4),
+    Ward_Type VARCHAR(20) NOT NULL,
+    No_of_Beds INT(5) NOT NULL,
+    Room_Charges INT(5) NOT NULL
+);
+CREATE TABLE Records (
+    Record_No INT(10) PRIMARY KEY NOT NULL,
+    Patient_ID INT(10),
+    Date DATE,
+    Description VARCHAR(100)
+);
+CREATE TABLE Insured (
+    Reciept_ID INT(10) NOT NULL,
+    InsuranceNo INT(10) NOT NULL,
+    CONSTRAINT Insured_1 FOREIGN KEY (InsuranceNo) REFERENCES Insurance (InsuranceNo) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT Insured_2 FOREIGN KEY (Reciept_ID) REFERENCES Bill (Reciept_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Prescription (
+    Reciept_ID INT(10) NOT NULL,
+    Code INT(10) NOT NULL,
+    CONSTRAINT Prescription_1 FOREIGN KEY (Reciept_ID) REFERENCES Bill (Reciept_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT Prescription_2 FOREIGN KEY (Code) REFERENCES Medicine (Code) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE InPatient (
+    Patient_ID INT(10) PRIMARY KEY NOT NULL,
+    Name VARCHAR(20) NOT NULL,
+    Sex VARCHAR(4) CHECK (Sex IN ('M','F','O')),
+    Date_Admitted DATE NOT NULL,
+    Date_Discharged DATE NOT NULL,
+    Contact INT(10),
+    Address VARCHAR(30),
+    Doctor_ID INT(10),
+    CONSTRAINT Attends_1 FOREIGN KEY (Doctor_ID) REFERENCES Doctor (Doctor_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE OutPatient (
+    Patient_ID INT(10) PRIMARY KEY NOT NULL,
+    Name VARCHAR(20) NOT NULL,
+    Sex VARCHAR(4) CHECK (Sex IN ('M','F','O')),
+    Date_Visited DATE NOT NULL,
+    Contact INT(10),
+    Address VARCHAR(30),
+    Doctor_ID INT(10) NOT NULL,
+    CONSTRAINT Appointment_2 FOREIGN KEY (Doctor_ID) REFERENCES Doctor (Doctor_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE OutUses (
+    Patient_ID INT(10) NOT NULL,
+    Facility_ID INT(10) NOT NULL,
+    CONSTRAINT OutUses_1 FOREIGN KEY (Patient_ID) REFERENCES OutPatient (Patient_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT OutUses_2 FOREIGN KEY (Facility_ID) REFERENCES Facilities (Facility_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE InUses (
+    Patient_ID INT(10) NOT NULL,
+    Facility_ID INT(10) NOT NULL,
+    CONSTRAINT InUses_1 FOREIGN KEY (Patient_ID) REFERENCES InPatient (Patient_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT InUses_2 FOREIGN KEY (Facility_ID) REFERENCES Facilities (Facility_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE InPayment (
+    Reciept_ID INT(10) NOT NULL,
+    Patient_ID INT(10) NOT NULL,
+    CONSTRAINT InPayment_1 FOREIGN KEY (Reciept_ID) REFERENCES Bill (Reciept_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT InPayment_2 FOREIGN KEY (Patient_ID) REFERENCES InPatient (Patient_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE OutPayment (
+    Reciept_ID INT(10) NOT NULL,
+    Patient_ID INT(10) NOT NULL,
+    CONSTRAINT OutPayment_1 FOREIGN KEY (Reciept_ID) REFERENCES Bill (Reciept_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT OutPayment_2 FOREIGN KEY (Patient_ID) REFERENCES OutPatient (Patient_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE OutHave (
+    Patient_ID INT(10) NOT NULL,
+    Record_No INT(10) NOT NULL,
+    CONSTRAINT OutHave_1 FOREIGN KEY (Patient_ID) REFERENCES OutPatient (Patient_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT OutHave_2 FOREIGN KEY (Record_No) REFERENCES Records (Record_No) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE InHave (
+    Patient_ID INT(10) NOT NULL,
+    Record_No INT(10) NOT NULL,
+    CONSTRAINT InHave_1 FOREIGN KEY (Patient_ID) REFERENCES InPatient (Patient_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT InHave_2 FOREIGN KEY (Record_No) REFERENCES Records (Record_No) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Manages (
+    Receptionist_ID INT(10) NOT NULL,
+    Record_No INT(10) NOT NULL,
+    CONSTRAINT Manages_1 FOREIGN KEY (Receptionist_ID) REFERENCES Receptionist (Receptionist_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT Manages_2 FOREIGN KEY (Record_No) REFERENCES Records (Record_No) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Allocated (
+    Patient_ID INT(10) NOT NULL,
+    Room_ID INT(10) NOT NULL,
+    Bed_ID INT(10) NOT NULL,
+    CONSTRAINT Allocated_1 FOREIGN KEY (Patient_ID) REFERENCES InPatient (Patient_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT Allocated_2 FOREIGN KEY (Room_ID) REFERENCES Rooms (Room_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Supervision (
+    Room_ID INT(10) NOT NULL,
+    Nurse_ID INT(10) NOT NULL,
+    CONSTRAINT Supervision_1 FOREIGN KEY (Room_ID) REFERENCES Rooms (Room_ID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT Supervision_2 FOREIGN KEY (Nurse_ID) REFERENCES Nurse (Nurse_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);

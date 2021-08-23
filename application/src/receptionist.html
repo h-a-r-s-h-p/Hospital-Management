@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Receptionist
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body class="bg1">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <form class="navbar-form navbar-right" method="post" action="/logout">
+              <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
+      </div>
+  </div>
+  </nav>
+  <br><br>
+      <br>
+      <br>
+      <br>
+  <div class="details" id="ddetails">
+    <div class="titlebar1">
+      <h4><b>Employee Details:</b></h4>
+    </div>
+    <br>
+      <div class="form-group" id="did">
+<label for="eID">Employee ID</label>
+<input class="form-control" type="text" placeholder="3000" readonly="">
+</div>
+      <div class="form-group" id="name">
+<label for="name">Name</label>
+<input class="form-control" type="text" placeholder="Sonu" readonly="">
+</div>
+      <div class="form-group" id="department">
+<label for="department">Department</label>
+<input class="form-control" type="text" placeholder="11000-Reception" readonly="">
+</div>
+      <div class="form-group" id="address">
+<label for="address">Address</label>
+<input class="form-control" type="text" placeholder="Delhi" readonly="">
+</div>
+      <div class="form-group" id="sex">
+<label for="sex">Sex</label>
+<input class="form-control" type="text" placeholder="M" readonly="">
+</div>
+      <div class="form-group" id="email">
+<label for="email">Email</label>
+<input class="form-control" type="text" placeholder="sonu@gmail.com" readonly="">
+</div>
+      <div class="form-group" id="contact">
+<label for="contact">Contact</label>
+<input class="form-control" type="text" placeholder="9128243" readonly="">
+</div>
+<form method="POST" action="/status">
+<div class="form-group" id="status">
+<label for="status">Status (click to change status)</label>
+<button type="toggle" class="btn btn-success btn-block" id="status_toggle" value="Present">Present</button>
+</div>
+</form>
+</div>
+<br><br>
+
+  <div class="details" id="deschead">
+    <div class="titlebar2">
+    <h4><b>Records:</b></h4>
+    </div>   
+    <br>
+    <form method="POST" action="/record">
+    <div class="form-group">
+    <label for="ID">Patient ID</label>
+    <input type="text" class="form-control" id="pid" name="pid" placeholder="Enter patient's ID" required="">
+    </div>     
+    <div class="form-group">
+    <label for="date-input" class="col-2 col-form-label">Appointment Date</label>
+    <div class="col-10"></div>
+    <input class="form-control" type="date" name="date_input" value="2021-04-25" id="date_input" required="">
+    </div>
+    <div class="form-group">
+      <label for="Description">Description</label>
+      <input type="text" class="form-control" id="desc" name="desc" placeholder="Description" required=""> 
+    </div>
+    <button type="submit" class="btn btn-primary" id="desc_submit">Submit</button>
+    </form>
+  </div>
+
+    <br><br>
+    <div class="details">
+    <div class="titlebar3">
+      <h4><b>Facilities Used:</b></h4>
+    </div>
+    <form method="POST" action="/f_used">
+    <br>
+    <div class="form-group">
+      <label for="ID">Patient ID</label>
+      <input type="text" class="form-control" id="pid" name="pid" placeholder="Enter patient's ID" required="">
+    </div>
+    <div class="form-group">
+      <label for="Facilities">Facilities:</label><br>
+      <input type="checkbox" id="F1" name="1010" value="X-Ray">
+      <label for="F1"> 1010-X-Ray</label><br>
+      <input type="checkbox" id="F2" name="1011" value="MRI">
+      <label for="F2"> 1011-MRI</label><br>
+      <input type="checkbox" id="F3" name="1012" value="CT Scan">
+      <label for="F3"> 1012-CT Scan</label><br>
+      <input type="checkbox" id="F4" name="1013" value="UltraSound">
+      <label for="F4"> 1013-UltraSound</label><br>
+      <input type="checkbox" id="F5" name="1014" value="Labroratory">
+      <label for="F5"> 1014-Labroratory</label><br>
+      <input type="checkbox" id="F6" name="1015" value="Physiothreapy">
+      <label for="F6"> 1015-Physiothreapy</label><br>
+      <input type="checkbox" id="F7" name="1016" value="ECG">
+      <label for="F7"> 1016-ECG </label><br> 
+    </div>
+    <button type="submit" class="btn btn-primary" id="facility_submit">Submit</button>
+    
+  </form></div>
+  <br>
+  <div class="details">
+  <div class="titlebar4">
+    <h4><b>Bill:</b></h4>
+  </div>
+  <br>
+  <form method="POST" action="/payment">
+  <div class="form-group">    
+    <label for="ID">Patient ID</label>
+    <input type="text" class="form-control" id="pid" name="pid" placeholder="Enter patient's ID" required="">
+  </div> 
+    <div class="form-group">
+        <label for="date-input" class="col-2 col-form-label">Transaction Date</label>
+        <div class="col-10"></div>
+          <input class="form-control" type="date" name="date_input" value="2021-04-25" id="date_input" required="">
+        </div>
+
+  <div class="form-group">
+    <label for="Description">Amount</label>
+    <input type="text" class="form-control" id="amt" name="amt" placeholder="Enter amount" required=""> 
+  </div>
+  
+  <div class="form-group">
+    <label for="MOP">Mode of payment:</label><br>
+    <input type="radio" id="CC" name="mode" value="Credit Card">
+    <label for="CC"> Credit Card</label><br>
+    <input type="radio" id="DC" name="mode" value="Debit Card">
+    <label for="DC"> Debit Card</label><br>
+    <input type="radio" id="I" name="mode" value="Insurance">
+    <label for="I"> Isurance</label><br>
+    <input type="radio" id="C" name="mode" value="Cash">
+    <label for="C"> Cash</label><br>
+    <input type="radio" id="mode" name="mode" value="Online">
+    <label for="Online/UPI"> Online/UPI</label><br>
+  </div>
+  <button type="submit" class="btn btn-primary" id="MOP_submit">Submit</button>
+</form>  
+</div>
+
+<script>
+</script>
+</body></html>

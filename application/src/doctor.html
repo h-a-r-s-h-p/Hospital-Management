@@ -1,0 +1,135 @@
+<html><head></head><body class="bg1">&gt;
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Doctor
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+  
+
+  
+  
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <form class="navbar-form navbar-right" method="post" action="/logout">
+              <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
+      </div>
+  </div>
+  </nav>
+  <br><br>
+      <br>
+      <br>
+      <br>
+<div class="details">
+<div class="titlebar1">
+<h4><b>Employee Details:</b></h4>
+</div>
+<br>
+<div class="form-group" id="did">
+<label for="eID">Employee ID</label>
+<input class="form-control" type="text" placeholder="2003" readonly="">
+</div>
+      <div class="form-group" id="name">
+<label for="name">Name</label>
+<input class="form-control" type="text" placeholder="Sunita" readonly="">
+</div>
+      <div class="form-group" id="department">
+<label for="department">Department</label>
+<input class="form-control" type="text" placeholder="11003-Internal Medicine" readonly="">
+</div>
+      <div class="form-group" id="address">
+<label for="address">Address</label>
+<input class="form-control" type="text" placeholder="Gaziabad" readonly="">
+</div>
+      <div class="form-group" id="sex">
+<label for="sex">Sex</label>
+<input class="form-control" type="text" placeholder="F" readonly="">
+</div>
+      <div class="form-group" id="email">
+<label for="email">Email</label>
+<input class="form-control" type="text" placeholder="SunitaMishra@gmail.com" readonly="">
+</div>
+      <div class="form-group" id="contact">
+<label for="contact">Contact</label>
+<input class="form-control" type="text" placeholder="6854684" readonly="">
+</div>
+<form method="POST" action="/status">
+<div class="form-group" id="status">
+<label for="status">Status (click to change status)</label>
+<button type="toggle" class="btn btn-success btn-block" id="status_toggle" value="Present">Present</button>
+</div>
+</form>
+</div>
+<br>
+<br>
+<div class="details">
+<div class="titlebar2">
+<h4><b>Appointments:</b></h4>
+</div>
+<br>
+<form method="POST" action="/dappt">
+<button type="submit" class="btn btn-primary btn-block" id="appt_show">Show Appointments</button>
+</form>
+<div id="appt"></div>
+<br>
+<div class="titlebar3">
+  <h5><b>Mark appointments:</b></h5>
+  </div>
+<br>
+<form method="POST" action="/mark">
+  <div class="form-group">
+    <label for="id">Patient ID</label>
+    <input type="number" class="form-control" id="pID" name="pid" placeholder="Enter patient's ID to mark" required="">
+  </div>
+  <div class="form-group" id="appt_mark"><button type="toggle" class="btn btn-primary btn-block disabled">Mark Appointment</button></div>
+  <div id="success"></div>
+</form>
+<br>
+<div class="titlebar4">
+  <h5><b>Admit patient:</b></h5>
+  </div>
+<br>
+<form method="POST" action="/admit">
+  <div class="form-group">
+    <label for="id">Patient ID</label>
+    <input type="number" class="form-control" id="pID" name="pid" placeholder="Enter patient's ID to mark" required="">
+  </div>
+  <label for="date-input" class="col-2 col-form-label">Discharge Date</label>
+  <div class="col-10">
+  <input class="form-control" type="date" name="date_input" value="2021-04-25" id="date_input" required="">
+  </div>
+  <br>
+  <div class="form-group" id="admit"><button type="toggle" class="btn btn-primary btn-block disabled">Admit patient</button></div>
+  <div id="success_admit"></div>
+</form>
+<br>
+</div>
+
+<script>
+  var today = new Date().toISOString().split('T')[0];
+      console.log(today);
+      $(date_input).attr('min',today);
+      $(date_input).attr('value',today);
+</script>
+</body></html>

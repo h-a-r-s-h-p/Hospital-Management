@@ -1,0 +1,150 @@
+body{
+    /* #538077 */
+    background-color: #538077;
+}
+
+.details{
+    margin: auto;
+    width: 50%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    padding: 30px;
+}
+
+.titlebar1{
+    background: coral;
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px;
+}
+
+.titlebar2{
+    background: rgb(155, 216, 95);
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px;
+}
+
+.titlebar3{
+    background: rgb(240, 237, 62);
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px;
+}
+
+.titlebar4{
+    background: rgb(139, 84, 241);
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px;
+}
+
+#errmsg{
+    color: red;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("../img/background.jpg");
+  
+    /* Full height */
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    /* Center and scale the image nicely */
+  
+  }
+
+.bg1 {
+  /* The image used */
+  background-image: url("../img/bg.jpg");
+
+  /* Full height */
+  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  /* Center and scale the image nicely */
+
+}
+
+.bg2 {
+  /* The image used */
+  background-image: url("../img/water.jpg");
+
+  /* Full height */
+  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  /* Center and scale the image nicely */
+
+}
+
+.column {
+    float: right;
+    /*
+    float:right;
+    */
+    width: 15%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+  
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+    .column {
+    width: 15%;
+    display: block;
+    }
+}
+.jumbo-title
+{
+  background: none;
+}
+.display-vm
+{
+  text-align: center;
+  color: whitesmoke;
+}
+/* Add some shadows to create a card effect */
+.card {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Some left and right padding inside the container */
+.container {
+  padding: 0 16px;
+  color:white;
+}
+
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.check{
+  color: white;
+  width: 10%;
+}
+
+.title {
+  color: whitesmoke;
+  width: 10%;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 10%;
+}
+
+.button:hover {
+  background-color: #555;
+}

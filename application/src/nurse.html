@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Nurse
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body class="bg1">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <form class="navbar-form navbar-right" method="post" action="/logout">
+              <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
+      </div>
+  </div>
+  </nav>
+  <br><br>
+      <br>
+      <br>
+      <br>
+  <div class="details" id="ddetails">
+    <div class="titlebar1">
+      <h4><b>Employee Details:</b></h4>
+    </div>
+    <br>
+      <div class="form-group" id="did">
+<label for="eID">Employee ID</label>
+<input class="form-control" type="text" placeholder="1002" readonly="">
+</div>
+      <div class="form-group" id="name">
+<label for="name">Name</label>
+<input class="form-control" type="text" placeholder="Jenny" readonly="">
+</div>
+      <div class="form-group" id="department">
+<label for="department">Department</label>
+<input class="form-control" type="text" placeholder="11005-GS" readonly="">
+</div>
+      <div class="form-group" id="address">
+<label for="address">Address</label>
+<input class="form-control" type="text" placeholder="Mumbai" readonly="">
+</div>
+      <div class="form-group" id="sex">
+<label for="sex">Sex</label>
+<input class="form-control" type="text" placeholder="F" readonly="">
+</div>
+      <div class="form-group" id="email">
+<label for="email">Email</label>
+<input class="form-control" type="text" placeholder="Jenny@gmail.com" readonly="">
+</div>
+      <div class="form-group" id="contact">
+<label for="contact">Contact</label>
+<input class="form-control" type="text" placeholder="8561894" readonly="">
+</div>
+<form method="POST" action="/status">
+<div class="form-group" id="status">
+<label for="status">Status (click to change status)</label>
+<button type="toggle" class="btn btn-danger btn-block" id="status_toggle">Absent</button>
+</div>
+</form>
+</div>
+
+<br>
+<br>
+<br>
+<div class="details" id="ddetails">
+<div class="titlebar2">
+<h4><b>Schedule:</b></h4>
+</div>
+<br>
+<form method="POST" action="/schedule">
+  <button type="submit" class="btn btn-primary" id="appt_submit">Show Nurse schedule</button>
+</form>
+<br>
+<div id="msg"></div>
+<div class="form-group" id="rid"></div>
+<div class="form-group" id="rtype"></div>
+<div class="form-group" id="wtype"></div>
+<div class="form-group" id="floor"></div>
+</div>
+
+
+
+<script>
+</script>
+body&gt;</body></html>
